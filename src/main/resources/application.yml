@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: cloud-file-processing
+  datasource:
+    # RDS CA validation in Java usually requires the RDS CA imported into JVM truststore.
+    url: jdbc:mysql://java-demo-db.cnokogu2m09s.ap-southeast-1.rds.amazonaws.com:3306/java_demo_db
+    username: admin
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+app:
+  aws:
+    region: ap-southeast-1
+    s3-bucket-name: quan-javajdemo-bucket
+    access-key: ${AWS_ACCESS_KEY_ID}
+    secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+    sqs-queue-url: https://sqs.ap-southeast-1.amazonaws.com/051942114572/java-demo-queue
+  worker:
+    poll-delay-ms: 5000
+
+logging:
+  level:
+    com.example.cloudfileprocessing: INFO
