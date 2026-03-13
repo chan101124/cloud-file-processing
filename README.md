@@ -97,6 +97,12 @@ mvn clean spring-boot:run
 
 ## Example Requests
 
+Health check:
+
+```bash
+curl "http://localhost:8080/actuator/health"
+```
+
 Upload:
 
 ```bash

@@ -17,3 +17,12 @@ app:
     sqs-queue-url: https://sqs.ap-southeast-1.amazonaws.com/<account-id>/<queue-name>
   worker:
     poll-delay-ms: 3000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
