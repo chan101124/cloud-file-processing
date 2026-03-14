@@ -68,6 +68,7 @@ public class FileServiceImpl implements FileService {
 
         String messagePayload = buildUploadMessage(metadata);
         try {
+            log.info("Sending SQS message for file id={} to queueUrl='{}'", metadata.getId(), awsProperties.getSqsQueueUrl());
             sqsMessagingService.sendMessage(awsProperties.getSqsQueueUrl(), messagePayload);
             metadata.setProcessingStatus(ProcessingStatus.QUEUED);
             fileMetadataRepository.save(metadata);
@@ -75,6 +76,7 @@ public class FileServiceImpl implements FileService {
         } catch (MessagingException ex) {
             metadata.setProcessingStatus(ProcessingStatus.FAILED);
             fileMetadataRepository.save(metadata);
+            log.error("Failed to queue file id={} for processing. Marked status=FAILED", metadata.getId(), ex);
             throw ex;
         }
 
