@@ -6,9 +6,9 @@ spring:
     # When deployed on EC2 with systemd, prefer the EnvironmentFile
     # (for example `/etc/cloud-file-processing/app.env`) to override these settings.
     # RDS CA validation in Java usually requires the RDS CA imported into JVM truststore.
-    # url: jdbc:mysql://java-demo-db.cnokogk2m09s.ap-southeast-1.rds.amazonaws.com:3306/java_demo_db
-    # username: admin
-    # password: password
+    url: jdbc:mysql://java-demo-db.cnokogu2m09s.ap-southeast-1.rds.amazonaws.com:3306/java_demo_db
+    username: admin
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -27,16 +27,12 @@ app:
     # Example local/testing values.
     # On EC2, these should normally come from the EnvironmentFile used by the service
     # instead of hardcoding production-like values here.
-    # region: ap-southeast-1
-    # s3-bucket-name: quan-javajdemo-bucket
-    # For localhost API testing, uncomment these lines if your machine is not already
-    # authenticated with AWS through another method. This lets the app upload to S3
-    # and send messages to SQS when running locally.
-    # On EC2, prefer the instance IAM role or values from the EnvironmentFile instead
-    # of hardcoding credentials in this file.
+    region: ap-southeast-1
+    s3-bucket-name: quan-javajdemo-bucket
+    # Uncomment these lines and add your AWS credentials to use static credentials
     # access-key: ${AWS_ACCESS_KEY_ID}
     # secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-    # sqs-queue-url: https://sqs.ap-southeast-1.amazonaws.com/0519421572/java-demo-queue
+    sqs-queue-url: https://sqs.ap-southeast-1.amazonaws.com/051942114572/java-demo-queue
   worker:
     poll-delay-ms: 5000
 
